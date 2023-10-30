@@ -192,6 +192,7 @@
 # Unignore our packaging files
 !/package
 /package/resources/LICENSE.rtf
+!/.packit.yaml
 
 # Ignore generated documentation site
 /docs/_site

@@ -1,0 +1,37 @@
+specfile_path: package/homebrew.spec
+
+files_to_sync:
+    - package/homebrew.spec
+    - .packit.yaml
+
+upstream_package_name: brew
+# TODO: discuss spec file name and downstream packaging format
+downstream_package_name: homebrew
+
+jobs:
+  - job: copr_build
+    trigger: pull_request
+    targets:
+      - fedora-all-x86_64
+      - epel-9-x86_64
+  - job: copr_build
+    trigger: commit
+    targets:
+      - fedora-all-x86_64
+      - epel-9-x86_64
+  # TODO: Enable these jobs if packaging downstream is enabled
+#  - job: propose_downstream
+#    trigger: release
+#    dist_git_branches:
+#      - fedora-rawhide
+#      - epel-9
+#  - job: koji_build
+#    trigger: commit
+#    dist_git_branches:
+#      - fedora-all
+#      - epel-9
+#  - job: bodhi_update
+#    trigger: commit
+#    dist_git_branches:
+#      - fedora-branched
+#      - epel-9
